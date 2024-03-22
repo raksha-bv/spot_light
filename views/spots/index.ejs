@@ -1,0 +1,42 @@
+<%layout('layouts/boilerplate')%>
+<body>
+    <h2>ALL SPOTS</h2>
+        <img width="65px" src="https://res.cloudinary.com/dqdjdjtgm/image/upload/v1711043968/cat.gif_mkq5wr.gif" alt="Your GIF">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3">
+        
+            <% for (let spot of spots) { %>
+                
+                <div class="col">
+                    <div class="card mb-4" id="index-card" style="box-shadow: 0 4px 8px rgba(33, 4, 4, 0.196);">
+                        <% if (spot.images.length) { %>
+                            <img crossorigin="anonymous" class="img-fluid"  style="height: 200px;object-fit: cover;border-top-left-radius: 5px;border-top-right-radius: 5px;" alt="" src="<%= spot.images[0].url %>">
+                        <% } else { %>
+                            <img crossorigin="anonymous" class="img-fluid" style="height: 200px;object-fit: cover;border-top-left-radius: 5px;border-top-right-radius: 5px;" alt="" src="https://res.cloudinary.com/dqdjdjtgm/image/upload/v1600103881/YelpCamp/lz8jjv2gyynjil7lswf4.png">
+                        <% } %>
+                        <div class="card-body">
+                            
+                            <h5 class="card-title"><%= spot.title %></h5>
+                            <span class="d-none d-md-block">
+                                <% if (spot.description.split(' ').length > 25) { %>
+                                    <p class="card-text" style="height: 100px;">
+                                        <%= spot.description.split(' ').slice(0, 25).join(' ') + '...' %>
+                                    </p>
+                                <% } else { %>
+                                    <p class="card-text" style="height: 100px;">
+                                        <%= spot.description %>
+                                    </p>
+                                <% } %>
+                                
+                            </span>
+
+                            <p class="card-text">
+                                <small><%= spot.location %></small>
+                            </p>
+                            <a href="/spots/<%= spot._id %>" class="btn brown-button">View <%= spot.title %></a>
+                            
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+    </div>
+</body>

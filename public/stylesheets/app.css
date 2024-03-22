@@ -1,0 +1,60 @@
+
+::selection {
+    background-color: #673010; 
+    color: #fff2d6dd; 
+}
+
+.header{
+    width:100%;
+    background-color: #673010;
+    
+}
+.footer{
+    width:100%;
+    background-color: #47220c;
+}
+
+.nav-link{
+    color: #fff2d6dd;
+}
+.navbar-brand{
+    color: #fff2d6dd;
+    padding: 5px;
+}
+
+h2{
+    color: #441f09;
+}
+.card-title,.card-text{
+    color: #441f09;
+}   
+
+.brown-button{
+    background-color: #441f09;
+    color: #fff2d6dd;
+}
+
+.brown-button:hover{
+    color:  #fff2d6dd;
+    background-color: rgba(87, 20, 20, 0.867)
+}
+
+.link-text{
+    color: #fff2d6dd;
+    text-decoration: none;
+}
+#index-card.card-body{
+    background-color: #fffcf6;
+    border-radius:  5px;
+}
+#show-card{
+    border-radius: 0 0 5px 5px;
+}
+.new-edit{
+    color: #441f09;
+}
+#map {
+    width: 100%;
+    height: 300px;
+    z-index: 0
+}

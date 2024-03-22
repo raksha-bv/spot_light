@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate')%>
+<div class="row new-edit">
+    <div class="col-md-6">
+        <h1>Register</h1>
+        <form action="/register" method="POST" class="validated-form" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="username">Username</label>
+                <input class="form-control" type="text" id="username" name="username" required autofocus>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control" type="email" id="email" name="email" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control" type="password" id="password" name="password" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <button class="btn brown-button btn-block">Register</button>
+        </form>
+    </div>
+    <div class="col-md-6 d-none d-md-flex justify-content-center">
+        <img src="https://res.cloudinary.com/dqdjdjtgm/image/upload/v1711120833/register_ijf3fi.gif" style="max-width: 100%;height: auto;border-radius: 10px;" alt="">
+    </div>
+</div>
