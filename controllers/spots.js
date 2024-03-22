@@ -66,7 +66,18 @@ module.exports.renderEditForm = async (req, res) => {
 module.exports.updateSpot = async (req, res) => {
     const { id } = req.params;
     const spot = await Spot.findByIdAndUpdate(id, { ...req.body.spot });
-    const imgs = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    spot.images = req.files.map(f => {
+        // Check if the file extension is .heic
+        if (f.originalname.endsWith('.heic')) {
+          // Rename the file extension from .heic to .jpg
+          const jpgFilename = f.filename.replace('.heic', '.jpg');
+          // Update the URL and filename accordingly
+          return { url: f.path.replace('.heic', '.jpg'), filename: jpgFilename };
+        } else {
+          // For other file types, no changes needed
+          return { url: f.path, filename: f.filename };
+        }
+      });
     spot.images.push(...imgs);
     await spot.save();
     if (req.body.deleteImages) {
