@@ -20,7 +20,19 @@ module.exports.createSpot = async (req, res, next) => {
     }).send()
     const spot = new Spot(req.body.spot);
     spot.geometry = geoData.body.features[0].geometry;
-    spot.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    // spot.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
+    spot.images = req.files.map(f => {
+        // Check if the file extension is .heic
+        if (f.originalname.endsWith('.heic')) {
+          // Rename the file extension from .heic to .jpg
+          const jpgFilename = f.filename.replace('.heic', '.jpg');
+          // Update the URL and filename accordingly
+          return { url: f.path.replace('.heic', '.jpg'), filename: jpgFilename };
+        } else {
+          // For other file types, no changes needed
+          return { url: f.path, filename: f.filename };
+        }
+      });
     spot.author = req.user._id;
     await spot.save()
     req.flash('success', 'Successfully made a new spot!');
