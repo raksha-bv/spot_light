@@ -19,13 +19,13 @@ const MongoDBStore = require('connect-mongo');
 const userRoutes = require('./routes/users');
 const spotRoutes = require('./routes/spots');
 const reviewRoutes = require('./routes/reviews');
-
-
-const dbUrl='mongodb://127.0.0.1:27017/spot-light'
+const secret=process.env.SECRET
+const dbUrl=process.env.DB_URL
+// const dbUrl='mongodb://127.0.0.1:27017/spot-light'
 async function main() {
   await mongoose.connect(dbUrl);
 }
-// const dbUrl=process.env.DB_URL
+
 const db= mongoose.connection
 db.on("error", console.error.bind(console,"connection error:"))
 db.once("open",()=>{
@@ -48,7 +48,7 @@ const store = MongoDBStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
     crypto: {
-        secret: 'thisshouldbeabettersecret!'
+        secret: secret
     }
 });
 store.on("error", function (e) {
@@ -58,7 +58,7 @@ store.on("error", function (e) {
 const sessionConfig = {
     store,
     name:'sess',
-    secret: 'thisshouldbeabettersecret!',
+    secret: secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
